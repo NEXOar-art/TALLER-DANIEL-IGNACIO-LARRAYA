@@ -377,11 +377,12 @@ color: #E31E24;
 color: #EF4444;
 margin-left: 2px;
 }
-/* Logo styles - ACTUALIZADO (MÁS GRANDE) */
+/* Logo styles - ACTUALIZADO (CIRCULAR) */
 .navbar-logo{
 height: 100px;
-width: auto;
-object-fit: contain;
+width: 100px;
+object-fit: cover;
+border-radius: 50%;
 transition: all 0.3s ease;
 filter: drop-shadow(0 0 20px rgba(227, 30, 36, 0.8));
 }
@@ -392,6 +393,7 @@ filter: drop-shadow(0 0 30px rgba(227, 30, 36, 1));
 @media(max-width: 768px){
 .navbar-logo{
 height: 70px;
+width: 70px;
 }
 }
 /* Language Switcher Styles */
@@ -428,23 +430,22 @@ box-shadow: 0 0 20px rgba(227, 30, 36, 0.8), inset 0 0 20px rgba(227, 30, 36, 0.
 <div class="particles" id="particles"></div>
 <!-- NAVBAR-->
 <nav class="fixed w-full z-50 top-0 glass border-b border-white/10 transition-all duration-300" id="navbar">
-<div class="container mx-auto px-4 h-16 md:h-20 flex items-center">
-<!-- LOGO + TITULO - Lado izquierdo juntos -->
-<div class="flex items-center gap-3 md:gap-4 flex-shrink-0">
-<a href="#" class="flex items-center">
+<div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
+<!-- LOGO - Izquierda superior (MÁS GRANDE) -->
+<a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="PRANTEDA.png" alt="PRANTEDA Chasis Motores Logo" class="navbar-logo">
 </a>
-<a href="#" class="font-display font-bold text-base sm:text-lg md:text-xl lg:text-2xl gradient-text tracking-tight uppercase drop-shadow-lg neon-text whitespace-nowrap" data-es="PRANTEDA CHASIS MOTORES" data-en="PRANTEDA CHASIS MOTORES">
+<!-- Título centrado -->
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg neon-text" data-es="PRANTEDA CHASIS MOTORES" data-en="PRANTEDA CHASIS MOTORES">
 PRANTEDA CHASIS MOTORES
 </a>
-</div>
 <div class="ml-auto flex items-center gap-3 md:gap-5">
 <!-- Language Switcher -->
-<button id="langToggle" class="lang-switcher flex items-center gap-2 flex-shrink-0">
+<button id="langToggle" class="lang-switcher flex items-center gap-2">
 <i class="fa-solid fa-language"></i>
 <span id="langText">EN</span>
 </button>
-<div id="status-badge-desktop" class="hidden lg:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-red/40 transition-all">
+<div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-red/40 transition-all">
 <span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-gray-500"></span>
 <span id="status-text-desktop" class="text-gray-300" data-es="Verificando..." data-en="Checking...">Verificando...</span>
 </div>
@@ -828,6 +829,29 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <div>
 <select id="inputFuelType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
 <option value="" disabled selected data-es="Tipo de combustible..." data-en="Fuel type...">Tipo de combustible...</option>
+<option value="Naftero" data-es="Naftero(Gasolina)" data-en="Gasoline">Naftero(Gasolina)</option>
+<option value="Diesel" data-es="Diesel" data-en="Diesel">Diesel</option>
+<option value="Híbrido" data-es="Híbrido" data-en="Hybrid">Híbrido</option>
+<option value="Eléctrico" data-es="Eléctrico" data-en="Electric">Eléctrico</option>
+</select>
+<label for="inputFuelType" class="label-below"><span data-es="Combustible" data-en="Fuel">Combustible</span><span class="required">*</span></label>
+<i class="fa-solid fa-chevron-down absolute right-4 top-[10.9rem] md:top-[4.65rem] -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+</div>
+</div>
+</div>
+<!-- Sección 2: Síntomas-->
+<div class="border-b border-white/10 pb-5">
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
+<span class="bg-gradient-to-r from-primary-red to-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0" style="box-shadow: 0 0 15px rgba(227, 30, 36, 0.6);">2</span>
+<span data-es="Descripción de Fallas" data-en="Failure Description">Descripción de Fallas</span>
+</h3>
+<div class="mb-4">
+<textarea id="inputSymptoms" rows="3" placeholder="Describe ruidos, olores, vibraciones, luces de alerta..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
+<label for="inputSymptoms" class="label-below"><span data-es="Síntomas" data-en="Symptoms">Síntomas</span><span class="required">*</span></label>
+</div>
+<div>
+<select id="inputContext" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none">
+<option value="" disabled selected data-es="Contexto de la falla..." data-en="Failure context...">Contexto de la falla...</option>
 <optgroup label="🔋 ARRANQUE Y ENERGÍA" class="text-gray-300">
 <option value="no_arranca_gira" data-es="Gira pero no arranca" data-en="Cranks but won't start">Gira pero no arranca</option>
 <option value="no_arranca_nada" data-es="No da contacto" data-en="No contact">No da contacto</option>
