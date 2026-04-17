@@ -55,11 +55,22 @@ animation:{
 'float':'float 6s ease-in-out infinite',
 'pulse-slow':'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 'neon-pulse':'neonPulse 2s ease-in-out infinite',
+'slide-in-left':'slideInLeft 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards',
+'float-scanner':'floatScanner 4s ease-in-out infinite',
 },
 keyframes:{
 float:{
 '0%, 100%':{transform:'translateY(0)'},
 '50%':{transform:'translateY(-12px)'},
+},
+floatScanner:{
+'0%, 100%':{transform:'translateY(0) rotate(0deg)'},
+'25%':{transform:'translateY(-8px) rotate(1deg)'},
+'75%':{transform:'translateY(8px) rotate(-1deg)'},
+},
+slideInLeft:{
+'0%':{opacity:'0', transform:'translateX(-100px)'},
+'100%':{opacity:'1', transform:'translateX(0)'},
 },
 neonPulse:{
 '0%, 100%':{boxShadow:'0 0 20px rgba(227, 30, 36, 0.5), 0 0 40px rgba(227, 30, 36, 0.3)'},
@@ -377,7 +388,7 @@ color: #E31E24;
 color: #EF4444;
 margin-left: 2px;
 }
-/* Logo styles - ACTUALIZADO (CIRCULAR) */
+/* Logo styles - ACTUALIZADO CON REFLEJO E ILUMINACIÓN */
 .navbar-logo{
 height: 100px;
 width: 100px;
@@ -385,10 +396,30 @@ object-fit: cover;
 border-radius: 50%;
 transition: all 0.3s ease;
 filter: drop-shadow(0 0 20px rgba(227, 30, 36, 0.8));
+/* Efecto de reflejo micro */
+-webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,1) 100%);
+mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,1) 100%);
+/* Iluminación superior */
+box-shadow: 0 -5px 25px rgba(227, 30, 36, 0.6), 0 0 20px rgba(227, 30, 36, 0.8), inset 0 5px 15px rgba(255,255,255,0.3);
+position: relative;
+}
+.navbar-logo::before{
+content:'';
+position: absolute;
+top: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60%;
+height: 40%;
+background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 40%, transparent 100%);
+border-radius: 50%;
+filter: blur(8px);
+pointer-events: none;
 }
 .navbar-logo:hover{
 transform: scale(1.15);
 filter: drop-shadow(0 0 30px rgba(227, 30, 36, 1));
+box-shadow: 0 -8px 35px rgba(227, 30, 36, 0.8), 0 0 30px rgba(227, 30, 36, 1), inset 0 8px 20px rgba(255,255,255,0.4);
 }
 @media(max-width: 768px){
 .navbar-logo{
@@ -423,6 +454,21 @@ box-shadow: 0 0 10px rgba(227, 30, 36, 0.5), inset 0 0 10px rgba(227, 30, 36, 0.
 .neon-border:hover{
 box-shadow: 0 0 20px rgba(227, 30, 36, 0.8), inset 0 0 20px rgba(227, 30, 36, 0.3), 0 0 40px rgba(227, 30, 36, 0.4);
 }
+/* Scanner image with movement */
+.scanner-image{
+animation: floatScanner 4s ease-in-out infinite;
+filter: drop-shadow(0 0 15px rgba(227, 30, 36, 0.4));
+transition: all 0.4s ease;
+}
+.scanner-image:hover{
+filter: drop-shadow(0 0 25px rgba(227, 30, 36, 0.7));
+transform: scale(1.05);
+}
+/* Title slide-in animation class */
+.title-slide-in{
+opacity: 0;
+animation: slideInLeft 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
 </style>
 </head>
 <body class="antialiased relative">
@@ -436,7 +482,7 @@ box-shadow: 0 0 20px rgba(227, 30, 36, 0.8), inset 0 0 20px rgba(227, 30, 36, 0.
 <img src="LogoDaniel.png" alt="Taller Diagnostico Automotriz Logo" class="navbar-logo">
 </a>
 <!-- Título centrado -->
-<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-sm sm:text-base md:text-lg lg:text-xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg neon-text" data-es="TALLER DIAGNOSTICO AUTOMOTRIZ" data-en="AUTOMOTIVE DIAGNOSTIC WORKSHOP">
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-sm sm:text-base md:text-lg lg:text-xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg neon-text title-slide-in" style="animation-delay: 0.3s;" data-es="TALLER DIAGNOSTICO AUTOMOTRIZ" data-en="AUTOMOTIVE DIAGNOSTIC WORKSHOP">
 TALLER DIAGNOSTICO AUTOMOTRIZ
 </a>
 <div class="ml-auto flex items-center gap-3 md:gap-5">
@@ -551,18 +597,18 @@ Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a iden
 </p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
-<!-- Card 1-->
+<!-- Card 1 - Scanner con movimiento-->
 <div class="glass-card hover-lift" style="box-shadow: 0 0 20px rgba(227, 30, 36, 0.15);">
-<div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/E31E24/0A0F1A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl flex items-center justify-center bg-gradient-to-br from-primary-dark/50 to-primary-gray/50">
+<img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop" alt="Diagnóstico por scanner" class="scanner-image w-3/4 h-3/4 object-contain">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4">
-<span class="text-xs font-bold text-primary-red uppercase tracking-wider" data-es="Predictivo" data-en="Predictive">Predictivo</span>
+<span class="text-xs font-bold text-primary-red uppercase tracking-wider" data-es="Diagnóstico" data-en="Diagnostic">Diagnóstico</span>
 </div>
 </div>
 <div class="p-5 md:p-6">
-<h3 class="font-bold text-lg md:text-xl text-white mb-2.5 neon-text" data-es="Señales en Frenos" data-en="Brake Signals">Señales en Frenos</h3>
-<p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito." data-en="Squealing, pedal vibration or excessive travel: indicators of pad wear or air in the circuit.">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5 neon-text" data-es="Scanner Automotriz" data-en="Automotive Scanner">Scanner Automotriz</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Diagnóstico computarizado avanzado con equipos de última generación para detectar fallas precisas." data-en="Advanced computerized diagnosis with state-of-the-art equipment to detect precise failures.">Diagnóstico computarizado avanzado con equipos de última generación para detectar fallas precisas.</p>
 <a href="#diagnostico" class="text-primary-red hover:text-red-300 font-semibold text-sm flex items-center gap-1.5 group">
 <span data-es="Analizar ahora" data-en="Analyze now">Analizar ahora</span>
 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -1194,7 +1240,7 @@ const name= document.getElementById('inputName').value||'Cliente';
 const phone= document.getElementById('inputPhone').value||'No proporcionado';
 // Mensaje para WhatsApp con el nuevo número
 const message=`🚗 *¡Hola TALLER DIAGNOSTICO AUTOMOTRIZ!* 👋
-📛 *Cliente:* ${name}
+ *Cliente:* ${name}
 📱 *Contacto:* ${phone}
 🚘 *Tipo de Vehículo:* ${vehicleType}
 *Vehículo:* ${vehicle}
