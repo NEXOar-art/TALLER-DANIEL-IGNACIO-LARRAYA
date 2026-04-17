@@ -377,23 +377,30 @@ color: #E31E24;
 color: #EF4444;
 margin-left: 2px;
 }
-/* Logo styles - ACTUALIZADO (CIRCULAR) */
+/* Logo styles - MEJORADO (CIRCULAR PREMIUM) */
 .navbar-logo{
-height: 100px;
-width: 100px;
+height: 110px;
+width: 110px;
 object-fit: cover;
 border-radius: 50%;
-transition: all 0.3s ease;
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 filter: drop-shadow(0 0 20px rgba(227, 30, 36, 0.8));
+border: 3px solid rgba(227, 30, 36, 0.6);
+box-shadow: 0 0 30px rgba(227, 30, 36, 0.5), inset 0 0 20px rgba(227, 30, 36, 0.2);
+background: linear-gradient(135deg, rgba(227, 30, 36, 0.2), rgba(10, 15, 26, 0.8));
+padding: 3px;
 }
 .navbar-logo:hover{
-transform: scale(1.15);
-filter: drop-shadow(0 0 30px rgba(227, 30, 36, 1));
+transform: scale(1.15) rotate(3deg);
+filter: drop-shadow(0 0 35px rgba(227, 30, 36, 1));
+border-color: rgba(227, 30, 36, 1);
+box-shadow: 0 0 50px rgba(227, 30, 36, 0.8), inset 0 0 30px rgba(227, 30, 36, 0.3);
 }
 @media(max-width: 768px){
 .navbar-logo{
-height: 70px;
-width: 70px;
+height: 75px;
+width: 75px;
+border-width: 2px;
 }
 }
 /* Language Switcher Styles */
@@ -431,7 +438,7 @@ box-shadow: 0 0 20px rgba(227, 30, 36, 0.8), inset 0 0 20px rgba(227, 30, 36, 0.
 <!-- NAVBAR-->
 <nav class="fixed w-full z-50 top-0 glass border-b border-white/10 transition-all duration-300" id="navbar">
 <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
-<!-- LOGO - Izquierda superior (MÁS GRANDE) -->
+<!-- LOGO - Izquierda superior (MEJORADO) -->
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="LogoDaniel.png" alt="Taller Diagnostico Automotriz Logo" class="navbar-logo">
 </a>
@@ -487,11 +494,11 @@ Pre-Diagnóstico
 <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 35%, rgba(227, 30, 36, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(200, 16, 46, 0.12) 0%, transparent 45%)"></div>
 </div>
 <div id="parallax-container" class="absolute inset-0 overflow-hidden">
-<img id="parallax-img" src="ScannerDaniel.png" alt="Diagnóstico computarizado automotriz" class="parallax-image w-full h-full object-cover opacity-35 parallax-bg">
-<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/80 to-transparent"></div>
+<img id="parallax-img" src="ScannerDaniel.png" alt="Diagnóstico computarizado automotriz" class="parallax-image w-full h-full object-cover opacity-40 parallax-bg">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/70 to-transparent"></div>
 </div>
 <div class="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-<div class="space-y-6 md:space-y-8 max-w-2xl">
+<div class="space-y-6 md:space-y-8 max-w-3xl lg:max-w-4xl">
 <div class="fade-in-up" style="animation-delay: 0.1s;">
 <div class="inline-flex items-center gap-2 bg-primary-red/15 border border-primary-red/30 text-primary-red px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm" style="box-shadow: 0 0 20px rgba(227, 30, 36, 0.3);">
 <i class="fa-solid fa-microchip"></i> <span data-es="Diagnóstico de Precisión" data-en="Precision Diagnosis">Diagnóstico de Precisión</span>
@@ -500,7 +507,7 @@ Pre-Diagnóstico
 <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl leading-tight glow-text main-title fade-in-up" style="animation-delay: 0.2s; text-shadow: 0 0 30px rgba(227, 30, 36, 0.8), 0 0 60px rgba(227, 30, 36, 0.5);">
 <span data-es="INYECCIÓN ELECTRÓNICA<br>Y MECÁNICA GENERAL" data-en="ELECTRONIC INJECTION<br>AND GENERAL MECHANICS">INYECCIÓN ELECTRÓNICA<br><span class="gradient-text neon-text">Y MECÁNICA GENERAL</span></span>
 </h1>
-<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" data-es="Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller." data-en="Your vehicle speaks. We listen with cutting-edge technology. Pre-load symptoms and receive an accurate diagnosis before visiting our workshop.">
+<p class="text-gray-300/90 text-base md:text-lg max-w-2xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" data-es="Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller." data-en="Your vehicle speaks. We listen with cutting-edge technology. Pre-load symptoms and receive an accurate diagnosis before visiting our workshop.">
 Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller.
 </p>
 <!-- Stats animados-->
@@ -526,13 +533,6 @@ Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga sín
 <a href="#asesoramiento" class="btn-outline px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2 text-sm font-semibold">
 <i class="fa-solid fa-book-open text-primary-red"></i> <span data-es="Guías Técnicas" data-en="Technical Guides">Guías Técnicas</span>
 </a>
-</div>
-</div>
-<!-- Imagen destacada con efecto flotante-->
-<div class="hidden lg:block relative fade-in-up" style="animation-delay: 0.4s;">
-<div class="relative">
-<div class="absolute inset-4 bg-gradient-to-r from-primary-red/20 to-primary-red/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow" style="box-shadow: 0 0 60px rgba(227, 30, 36, 0.4);"></div>
-<img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1600&auto=format&fit=crop" alt="Técnico especializado con equipo de diagnóstico" class="relative rounded-2xl shadow-2xl border border-white/10 transform hover:scale-[1.02] transition duration-500 hover-glow" style="box-shadow: 0 0 40px rgba(227, 30, 36, 0.3);">
 </div>
 </div>
 </div>
@@ -1199,7 +1199,7 @@ const name= document.getElementById('inputName').value||'Cliente';
 const phone= document.getElementById('inputPhone').value||'No proporcionado';
 // Mensaje para WhatsApp con el nuevo número
 const message=`🚗 *¡Hola Taller Diagnostico Automotriz!* 👋
-📛 *Cliente:* ${name}
+ *Cliente:* ${name}
 📱 *Contacto:* ${phone}
 🚘 *Tipo de Vehículo:* ${vehicleType}
 *Vehículo:* ${vehicle}
